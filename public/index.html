@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO!</title>
+    <link rel="stylesheet" href="uno.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Message and turn info -->
+        <div id="game-info">
+            <div id="message-box">Welcome to UNO!</div>
+            <div id="turn-display">Player's Turn</div>
+        </div>
+
+        <!-- Opponent's hand -->
+        <div id="opponent-hand" class="hand opponent">
+            <!-- Opponent cards will be rendered here by JS -->
+        </div>
+
+        <!-- Game board area (deck, discard pile) -->
+        <div class="game-board">
+            <div class="deck-area" id="draw-deck">
+                <div class="card back"></div>
+                <div class="deck-text">Draw Pile</div>
+            </div>
+            <div class="discard-pile" id="discard-pile">
+                <div class="discard-text">Discard Pile</div>
+            </div>
+        </div>
+        
+        <!-- Player's hand -->
+        <div id="player-hand" class="hand player">
+            <!-- Player cards will be rendered here by JS -->
+        </div>
+        
+        <!-- Game control buttons -->
+        <div class="game-controls">
+            <button id="uno-btn" class="control-btn" disabled>UNO!</button>
+        </div>
+
+    </div>
+
+    <!-- Wild Card Color Picker Modal -->
+    <div id="color-picker-modal" class="modal">
+        <div class="modal-content">
+            <h2>Choose a color</h2>
+            <div class="color-options">
+                <button class="color-option red" data-color="red"></button>
+                <button class="color-option blue" data-color="blue"></button>
+                <button class="color-option green" data-color="green"></button>
+                <button class="color-option yellow" data-color="yellow"></button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="uno.js" defer></script>
+</body>
+</html>

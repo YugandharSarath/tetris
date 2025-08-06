@@ -1,0 +1,55 @@
+{
+  "project": "UNO Game",
+  "version": "1.0.0",
+  "description": "A browser-based UNO card game with full rules, UI interactions, and turn-based mechanics.",
+  "author": "Yugandhar Sarath",
+  "email": "yugandhar.sarath53@gmail.com",
+  "repository": "git@github.com:YugandharSarath/quiz_app.git",
+  "techStack": ["HTML", "CSS", "JavaScript"],
+  "features": [
+    "Game initialization with shuffled deck and correct starting card",
+    "Player and opponent hands (7 cards each)",
+    "Discard and draw piles with visual UI",
+    "Matching logic for color, number, symbol",
+    "Wild card and Wild Draw Four card logic with color picker",
+    "Action cards: Skip, Reverse, Draw Two",
+    "UNO button with call logic and validation",
+    "Win detection and game reset functionality"
+  ],
+  "uiComponents": [
+    "Player hand view",
+    "Opponent hand (hidden cards)",
+    "Discard pile",
+    "Draw deck",
+    "UNO! button",
+    "Turn messages",
+    "Restart button"
+  ],
+  "testCases": [
+    { "id": "TC-001", "description": "Game starts correctly" },
+    { "id": "TC-002", "description": "Player can play a matching color card" },
+    { "id": "TC-003", "description": "Player can play a matching value card" },
+    { "id": "TC-004", "description": "Player cannot play a non-matching card" },
+    { "id": "TC-005", "description": "Player draws a card and cannot play it" },
+    { "id": "TC-006", "description": "Player draws a card and can play it" },
+    { "id": "TC-007", "description": "Player plays a Skip card" },
+    { "id": "TC-008", "description": "Player plays a Reverse card" },
+    { "id": "TC-009", "description": "Player plays a Draw Two card" },
+    { "id": "TC-010", "description": "Player plays a Wild card" },
+    { "id": "TC-011", "description": "Player plays a Wild Draw Four card" },
+    { "id": "TC-012", "description": "Player wins the game" },
+    { "id": "TC-013", "description": "Opponent wins the game" },
+    {
+      "id": "TC-014",
+      "description": "Player plays final card, which is a wild"
+    },
+    { "id": "TC-015", "description": "Player calls UNO!" },
+    { "id": "TC-016", "description": "Player fails to call UNO!" },
+    { "id": "TC-017", "description": "Deck runs out of cards" }
+  ],
+  "status": "in-progress",
+  "lastUpdated": "2025-08-05T19:00:00+05:30",
+  "duration": "6-8 hours",
+  "companiesAsked": ["Paytm", "Swiggy", "TCS", "Zoho", "Freshworks"],
+  "difficulty": "Intermediate"
+}

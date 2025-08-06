@@ -1,0 +1,9 @@
+# Ignore all node_modules in subfolders
+**/node_modules/
+
+# Optional: other common ignores
+.DS_Store
+.env
+*.log
+dist/
+build/
