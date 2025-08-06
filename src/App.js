@@ -1,6 +1,6 @@
-import React from 'react';
-import UNO from './uno';
-import './uno.css';
+import React from "react";
+import UNO from "./uno";
+import "./uno.css";
 
 function App() {
   return (
