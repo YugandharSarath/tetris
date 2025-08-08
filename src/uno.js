@@ -153,16 +153,21 @@ function renderGame() {
 function renderHand(hand, handEl, owner) {
   if (!handEl) return;
   handEl.innerHTML = "";
-  hand.forEach((card) => {
+  hand.forEach((card, index) => {
     const cardEl = document.createElement("div");
     cardEl.classList.add("card", card.color);
+    
+    // Add data-testid for cards
     if (owner === "player") {
+      cardEl.setAttribute("data-testid", `player-card-${index}`);
       cardEl.dataset.color = card.color;
       cardEl.dataset.value = card.value;
       // Add playability class for visual feedback
       if (isCardPlayable(card)) {
         cardEl.classList.add("playable");
       }
+    } else {
+      cardEl.setAttribute("data-testid", `opponent-card-${index}`);
     }
 
     let cardContent;
@@ -203,6 +208,7 @@ function renderDiscardPile() {
     cardEl.classList.add("card", topCard.color);
     cardEl.dataset.color = topCard.color;
     cardEl.dataset.value = topCard.value;
+    cardEl.setAttribute("data-testid", "discard-top-card");
 
     let cardContent;
     if (topCard.value === "skip") {
@@ -488,6 +494,7 @@ function endGame(winner) {
   const restartBtn = document.createElement("button");
   restartBtn.textContent = "Play Again";
   restartBtn.id = "restart-btn";
+  restartBtn.setAttribute("data-testid", "restart-button");
   restartBtn.classList.add("control-btn");
   restartBtn.addEventListener("click", startGame);
 
