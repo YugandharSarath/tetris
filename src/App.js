@@ -1,12 +1,12 @@
 import React from "react";
-import UNO from "./uno";
-import "./uno.css";
+import Tetris from "./tetris";
+import "./tetris.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>UNO</h1>
-      <UNO />
+      <h1>Tetris</h1>
+      <Tetris />
     </div>
   );
 }

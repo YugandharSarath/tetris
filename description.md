@@ -1,109 +1,61 @@
 
-# 🃏 UNO Game – Requirements & Test Cases
+---
+
+## 🎯 Tetris Game Challenge – Improved Specification
+
+### ✅ Core Requirements
+
+#### **1. Game Initialization**
+
+* The game board must be a **20 rows × 10 columns grid** rendered inside `data-testid="game-container"`.
+* On game start:
+
+  * Spawn a random Tetromino at the **top-center** of the grid (`data-testid="tetris-grid"`, cells use `data-testid="cell-${r}-${c}"`).
+  * Display the **next piece preview** inside `data-testid="next-piece-display"`, with cells labeled `data-testid="next-piece-cell-${r}-${c}"`.
+  * Set the score in `data-testid="score-display"` to **0**.
+
+#### **2. Gameplay Mechanics**
+
+* The active Tetromino:
+
+  * Falls down automatically at a fixed time interval.
+  * Moves **left** or **right** via arrow keys.
+  * Rotates clockwise with the up arrow key, respecting wall-kick rules.
+* Pressing **Spacebar** performs a Hard Drop, instantly placing the piece in its lowest valid position.
+* A piece locks into place when:
+
+  * It lands on the bottom row, or
+  * It rests on top of another block.
+
+#### **3. Scoring & Line Clearing**
+
+* Clearing one or more complete horizontal lines increases the score shown in `data-testid="score-display"`.
+* Multiple lines cleared in a single move yield bonus points.
+* After clearing, remove the full rows and shift remaining rows downward.
+
+#### **4. Game Over**
+
+* The game ends when a new Tetromino **cannot spawn** without overlapping existing blocks.
+* On game over:
+
+  * Show `data-testid="game-over-message"`.
+  * Provide a `data-testid="restart-button"` to reset the game.
+
+#### **5. User Interface**
+
+* Must show:
+
+  * The main grid (`data-testid="tetris-grid"`).
+  * Current score (`data-testid="score-display"`).
+  * The next piece preview (`data-testid="next-piece-display"`).
+  * A Game Over message (`data-testid="game-over-message"`).
+  * Restart button (`data-testid="restart-button"`).
 
 ---
 
-## ✅ Core Requirements
+### ⚠️ Edge Cases & Constraints
 
-### 1. **Game Initialization**
-* Start with a shuffled deck of 108 UNO cards.
-* Deal **7 cards** to the player and the opponent.
-* Discard pile begins with **one non-action, non-wild card**.
-
-### 2. **Gameplay Mechanics**
-* Players can play a card if it matches the **color, number, or symbol** of the top discard card.
-* **Wild cards** are playable at any time.
-
-### 3. **Action Cards**
-* **Skip**: Skips the next player's turn.
-* **Reverse**: Reverses play direction.
-* **Draw Two**: Next player draws two cards and skips their turn.
-* **Wild**: Lets the player choose the next color.
-* **Wild Draw Four**: Opponent draws four cards and skips turn. Can only be played if no playable cards are available.
-
-### 4. **Drawing Cards**
-* If no playable card is available, draw a card from the deck.
-* If playable, the drawn card may be played immediately. Otherwise, the turn ends.
-
-### 5. **UNO! Call**
-* When a player has **2 cards**, they must click **"UNO!"**.
-* If they fail, a penalty (to be implemented) is applied.
-
-### 6. **Winning**
-* The player who plays all their cards first wins.
-* A winning message and **"Play Again"** button are shown.
-
-### 7. **User Interface**
-* Player's cards are visible; opponent's cards are hidden (face down).
-* Display discard pile and draw deck.
-* Message log shows game status.
-* "UNO!" button appears when the player has 2 cards.
-
----
-
-## ⚠️ Edge Cases & Constraints
-
-* **Empty Deck**: When draw deck is empty, shuffle discard pile (excluding top card) to refill it.
-* **Starting Card**: Must be a valid non-action, non-wild number card.
-* **Wild Play**: On wild card use, prompt player to pick a color before continuing.
-* **Invalid Moves**: Disallowed via UI and game logic.
-* **Game Over**: Turn-based actions stop. Show winner and restart option.
-* **UNO Button Visibility**: Enabled only when 2 cards remain; disabled once pressed.
-
----
-
-## 🧪 Data-TestId Implementation
-
-The UNO game includes comprehensive `data-testid` attributes for automated testing:
-
-### **Card Elements**
-- `data-testid="player-card-${index}"` - Individual player cards (index 0-based)
-- `data-testid="opponent-card-${index}"` - Individual opponent cards (index 0-based)
-- `data-testid="discard-top-card"` - Top card of the discard pile
-
-### **UI Controls**
-- `data-testid="restart-button"` - Play Again button (appears after game ends)
-
-### **Additional Data Attributes**
-Cards also include:
-- `data-color` - The card's color (red, green, blue, yellow, wild)
-- `data-value` - The card's value (0-9, skip, reverse, draw2, wild, wildDraw4)
-
----
-
-## 🔍 Test Coverage Areas
-
-### **Unit Tests**
-1. **Deck Creation**: Validates 108-card deck with correct distribution
-2. **Card Shuffling**: Ensures randomization without losing cards
-3. **Playability Logic**: Tests all card matching scenarios
-4. **Action Cards**: Verifies skip, reverse, draw2, and wild card effects
-5. **UNO Button**: Tests enable/disable states based on hand size
-
-### **Integration Tests**
-1. **Game Flow**: Complete turn sequences and state transitions
-2. **Edge Cases**: Empty deck reshuffling, invalid moves
-3. **Win Conditions**: Player and opponent victory scenarios
-
-### **DOM Tests**
-1. **Test ID Validation**: Ensures all interactive elements have proper test IDs
-2. **Element Rendering**: Verifies correct HTML structure and attributes
-3. **Event Handling**: Tests click events and user interactions
-
-### **Performance Tests**
-1. **Deck Operations**: Ensures fast creation and shuffling
-2. **Game State Updates**: Validates efficient rendering cycles
-
----
-
-## 📊 Deck Composition Details
-
-- **Total Cards**: 108
-- **Numbered Cards**: 76 (19 per color: one 0, two each 1-9)
-- **Action Cards**: 24 (2 each of skip/reverse/draw2 per color)
-- **Wild Cards**: 8 (4 wild, 4 wild draw four)
-- **Colors**: 4 (red, green, blue, yellow) + wild
-
----
-
-
+* **Collision detection** must prevent pieces from moving outside the grid or through other blocks.
+* **Rotation logic** must adjust for walls (wall-kick handling).
+* **Restart** must fully clear the grid, reset score, and reset the next piece queue.
+* **Line clearing** must always shift blocks above downward without leaving gaps.
